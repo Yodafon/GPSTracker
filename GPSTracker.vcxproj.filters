@@ -39,6 +39,12 @@
     <ClInclude Include="PositionQuery.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TouchHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MQTTPublisher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PositionQuery.cpp">
@@ -48,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GSMHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TouchHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MQTTPublisher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -76,9 +76,12 @@ unique_ptr<GPSPosition> GPSHandler::getPosition()
 		{
 
 
-      	  //this->displayInfo();
+      	  //remove line
 			return unique_ptr<GPSPosition>(new GPSPosition(gps.location, gps.date, gps.time, gps.speed, gps.satellites, gps.hdop));
 	}
+
+	return unique_ptr<GPSPosition>(new GPSPosition(gps.location, gps.date, gps.time, gps.speed, gps.satellites, gps.hdop));
+
 	
 
 	if (gps.charsProcessed() < 10)

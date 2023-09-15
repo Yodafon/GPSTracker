@@ -3,24 +3,27 @@
  Created:	6/16/2021 2:39:19 PM
  Author:	Laci
 */	
+#include <PubSubClient.h>
 #include "PositionQuery.h"
 #include "GSMHandler.h"
 #include "GPSHandler.h"
-#include <sstream>
+#include "MQTTPublisher.h"
 #include <string>
 #include <c++/5.2.0/bits/unique_ptr.h>
-//#include <memory>
 
 
 std::unique_ptr<PositionQuery> positionQuery;
+
 GSMHandler* gsmHandler;
 GPSHandler* gpsHandler;
+MQTTPublisher* mqttPublisher;
 void setup() {
 
 	Serial.begin(115200);
 
 	gpsHandler = new GPSHandler();
 	gsmHandler = new GSMHandler();
+	mqttPublisher = new MQTTPublisher(*gsmHandler);
 
 	positionQuery = std::unique_ptr<PositionQuery>(new PositionQuery(*gpsHandler, *gsmHandler));
 }
@@ -35,7 +38,7 @@ void loop() {
 	size_t bytes = serializeJson(position->toJSON(), result);
 	Serial.println(bytes);
 	Serial.println(result.c_str());
-	//gsmHandler.send(result.c_str());
+	mqttPublisher->publish(result.c_str());
 	}
   
 }
